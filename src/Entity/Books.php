@@ -42,7 +42,7 @@ class Books
         return $this->author;
     }
 
-    public function setAuthorId(?Authors $author): static
+    public function setAuthor(?Authors $author): static
     {
         $this->author = $author;
 
