@@ -58,7 +58,7 @@ class Authors
     {
         if (!$this->books->contains($book)) {
             $this->books->add($book);
-            $book->setAuthorId($this);
+            $book->setAuthor($this);
         }
 
         return $this;
