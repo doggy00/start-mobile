@@ -20,7 +20,7 @@ class AuthorsRepository extends ServiceEntityRepository
     {
         return !empty(
             $this->createQueryBuilder('a')
-                ->addSelect('a.id')
+                ->select('a.id')
                 ->getQuery()
                 ->getResult()
         );
@@ -35,28 +35,14 @@ class AuthorsRepository extends ServiceEntityRepository
             ->getArrayResult();
     }
 
-    //    /**
-    //     * @return Authors[] Returns an array of Authors objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('a.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Authors
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function getBooksCount(Authors $author): int
+    {
+        return $this->createQueryBuilder('a')
+            ->select('COUNT(b.id)')
+            ->leftJoin('a.books', 'b')
+            ->andWhere('a = :author')
+            ->setParameter('author', $author)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

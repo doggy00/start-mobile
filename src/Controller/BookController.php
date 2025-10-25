@@ -8,12 +8,8 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class BookController extends AbstractController
 {
-    #[Route('/book', name: 'books')]
     public function index(): JsonResponse
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/BookController.php',
-        ]);
+
     }
 }

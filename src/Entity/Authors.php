@@ -63,4 +63,9 @@ class Authors
 
         return $this;
     }
+
+    public function getBooksCount(): int
+    {
+        return 0;
+    }
 }
